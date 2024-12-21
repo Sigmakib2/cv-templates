@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnie Ida - Links</title>
+    <style>
+        :root {
+            --color-primary: #000000;
+            --color-background: #f5f3ff;
+            --color-surface: #ffffff;
+            --color-text: #1f2937;
+            --color-text-secondary: #6b7280;
+            --shadow-sm: 4px 4px 0 var(--color-primary);
+            --shadow-md: 6px 6px 0 var(--color-primary);
+            --shadow-lg: 8px 8px 0 var(--color-primary);
+            --border-width: 2px;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-pic {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            border: var(--border-width) solid var(--color-primary);
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .bio {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+        }
+
+        .menu-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border: var(--border-width) solid var(--color-primary);
+            border-radius: 50%;
+            background: var(--color-surface);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .menu-button:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: var(--color-surface);
+            border: var(--border-width) solid var(--color-primary);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--color-text);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .link:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .link__icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .link__text {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+        }
+
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social__link {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .social__link:hover {
+            transform: scale(1.1);
+        }
+
+        .join-button {
+            background: var(--color-surface);
+            border: var(--border-width) solid var(--color-primary);
+            border-radius: 24px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text);
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .join-button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal__content {
+            background: var(--color-surface);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: var(--border-width) solid var(--color-primary);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        .modal__close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+        }
+
+        .modal__title {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .modal__qr {
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .modal__url {
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+            word-break: break-all;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 1rem auto;
+            }
+
+            .profile-pic {
+                width: 80px;
+                height: 80px;
+            }
+
+            .link {
+                padding: 0.75rem;
+            }
+
+            .link__text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button id="menuButton" class="menu-button" aria-label="Share">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="18" cy="5" r="3" />
+                <circle cx="6" cy="12" r="3" />
+                <circle cx="18" cy="19" r="3" />
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+        </button>
+
+        <div class="profile">
+            <img src="https://i.imgur.com/YY2wqaX.jpg" alt="Profile Picture" class="profile-pic">
+            <h1 class="name">Minnie Ida</h1>
+            <p class="bio">Community focused artist, with a taste for everything local</p>
+        </div>
+
+        <nav class="links">
+            <a href="#" class="link">
+                <span class="link__icon">📅</span>
+                <span class="link__text">Tour dates</span>
+            </a>
+            <a href="#" class="link">
+                <span class="link__icon">🎮</span>
+                <span class="link__text">Our discord</span>
+            </a>
+            <a href="#" class="link">
+                <span class="link__icon">🌐</span>
+                <span class="link__text">Website</span>
+            </a>
+            <a href="#" class="link">
+                <span class="link__icon">📧</span>
+                <span class="link__text">Email</span>
+            </a>
+        </nav>
+
+        <footer class="footer">
+            <div class="social">
+                <a href="#" class="social__link">𝕏</a>
+                <a href="#" class="social__link">f</a>
+                <a href="#" class="social__link">📸</a>
+                <a href="#" class="social__link">🎵</a>
+            </div>
+            <button class="join-button">Join platypustemplate on Linktree</button>
+        </footer>
+    </div>
+
+    <div id="shareModal" class="modal">
+        <div class="modal__content">
+            <button class="modal__close" id="closeButton">&times;</button>
+            <h2 class="modal__title">Share Profile</h2>
+            <div class="modal__qr">
+                <div id="qrCode"></div>
+            </div>
+            <p class="modal__url"></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('shareModal');
+            const menuButton = document.getElementById('menuButton');
+            const closeButton = document.getElementById('closeButton');
+            const qrContainer = document.getElementById('qrCode');
+            const urlDisplay = document.querySelector('.modal__url');
+            const currentUrl = window.location.href;
+
+            // Setup QR Code
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentUrl)}`;
+            const qrImage = document.createElement('img');
+            qrImage.src = qrUrl;
+            qrContainer.appendChild(qrImage);
+
+            urlDisplay.textContent = currentUrl;
+
+            // Modal handlers
+            menuButton.addEventListener('click', () => {
+                modal.style.display = 'flex';
+            });
+
+            closeButton.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
